@@ -54,8 +54,10 @@ export function Showcase() {
                   height={1000}
                   loading="lazy"
                   className="is-active"
+                  draggable={false}
                 />
               </div>
+              <span className="window-accent" aria-hidden="true" />
             </div>
           </Tilt>
         </Reveal>

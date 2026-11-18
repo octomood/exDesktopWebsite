@@ -80,9 +80,11 @@ export function Preview() {
                     className={index === active ? 'is-active' : ''}
                     loading={index === 0 ? 'eager' : 'lazy'}
                     aria-hidden={index !== active}
+                    draggable={false}
                   />
                 ))}
                 </div>
+                <span className="window-accent" aria-hidden="true" />
               </div>
             </Tilt>
           </div>

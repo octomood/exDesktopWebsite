@@ -123,7 +123,7 @@
 
   --line: rgb(23 20 16 / 0.1);
   --line-strong: rgb(23 20 16 / 0.18);
-  --window-edge: rgb(23 20 16 / 0.26);
+  --window-edge: rgb(23 20 16 / 0.3);
 
   --primary: var(--p-coral-50);
   --primary-hover: var(--p-coral-60);
@@ -149,6 +149,7 @@
   --shadow-2: 0 2px 4px rgb(23 20 16 / 0.04), 0 18px 44px -18px rgb(23 20 16 / 0.2);
   --shadow-3: 0 30px 80px -34px rgb(60 20 8 / 0.36), 0 6px 18px -10px rgb(23 20 16 / 0.18);
 
+  --page-wash: linear-gradient(180deg, #fdfbf7 0%, var(--bg) 62%);
   --header-bg: color-mix(in oklab, var(--p-paper-100) 82%, transparent);
   --hero-glow: color-mix(in oklab, var(--p-coral-70) 26%, transparent);
   --window-bg: #ffffff;
@@ -180,7 +181,7 @@
 
   --line: rgb(246 242 236 / 0.12);
   --line-strong: rgb(246 242 236 / 0.2);
-  --window-edge: rgb(246 242 236 / 0.26);
+  --window-edge: rgb(246 242 236 / 0.34);
 
   --primary: var(--p-coral-70);
   --primary-hover: var(--p-coral-80);
@@ -206,6 +207,7 @@
   --shadow-2: 0 2px 6px rgb(0 0 0 / 0.4), 0 22px 50px -20px rgb(0 0 0 / 0.7);
   --shadow-3: 0 34px 90px -30px rgb(0 0 0 / 0.85), 0 8px 22px -12px rgb(0 0 0 / 0.6);
 
+  --page-wash: linear-gradient(180deg, #17130f 0%, var(--bg) 58%);
   --header-bg: color-mix(in oklab, var(--p-ink-950) 78%, transparent);
   --hero-glow: color-mix(in oklab, var(--p-coral-70) 20%, transparent);
   --window-bg: #1a1b1e;

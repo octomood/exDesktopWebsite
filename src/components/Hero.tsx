@@ -62,8 +62,10 @@ export function Hero() {
                   width={1600}
                   height={1000}
                   fetchPriority="high"
+                  draggable={false}
                 />
               </div>
+              <span className="window-accent" aria-hidden="true" />
             </div>
 
             <div className="hero-badge">

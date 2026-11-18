@@ -97,6 +97,64 @@
   --tilt-r: 22px;
 }
 
+
+/* screenshots are pictures, not UI: no selection, no drag, no pointer cursor */
+.app-window,
+.preview-frame,
+.mock {
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: default;
+}
+
+.app-window__shot,
+.preview-frame__screen img {
+  pointer-events: none;
+}
+
+/* a small Material figure tucked into the bottom-right of every window */
+.window-accent {
+  position: absolute;
+  right: -28px;
+  bottom: -28px;
+  z-index: 3;
+  width: 156px;
+  height: 156px;
+  pointer-events: none;
+  animation: accent-float 18s var(--ease-in-out) infinite alternate;
+}
+
+.window-accent::before {
+  content: '';
+  position: absolute;
+  right: 38px;
+  top: 24px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: color-mix(in oklab, var(--tertiary) 38%, transparent);
+}
+
+.window-accent::after {
+  content: '';
+  position: absolute;
+  right: 6px;
+  bottom: 6px;
+  width: 76px;
+  height: 76px;
+  border-radius: 26%;
+  background: color-mix(in oklab, var(--secondary) 36%, transparent);
+}
+
+@keyframes accent-float {
+  from {
+    transform: translate3d(0, 8px, 0) rotate(-3deg);
+  }
+  to {
+    transform: translate3d(-7px, -8px, 0) rotate(7deg);
+  }
+}
+
 /* ------------------------------------------------------------------
    Header
 ------------------------------------------------------------------ */
@@ -497,15 +555,18 @@
   right: -16%;
   width: 88%;
   aspect-ratio: 1;
-  background: var(--primary-container);
-  opacity: 0.8;
+  background:
+    radial-gradient(circle at 36% 32%, color-mix(in oklab, var(--primary) 26%, transparent), transparent 64%),
+    radial-gradient(circle at 74% 72%, color-mix(in oklab, var(--secondary) 16%, transparent), transparent 62%);
+  filter: blur(10px);
+  opacity: 0.95;
   border-radius: 46% 54% 58% 42% / 44% 46% 54% 56%;
   animation: morph 22s var(--ease-in-out) infinite alternate;
   filter: blur(2px);
 }
 
 [data-theme='dark'] .hero-blob {
-  opacity: 0.55;
+  opacity: 0.9;
 }
 
 @keyframes morph {
@@ -526,7 +587,7 @@
 .app-window {
   position: relative;
   border-radius: 20px;
-  border: 2px solid var(--window-edge);
+  border: 3px solid var(--window-edge);
   background: var(--window-bg);
   box-shadow: var(--shadow-3);
   overflow: hidden;
@@ -647,8 +708,9 @@
 }
 
 .preview-frame {
+  position: relative;
   border-radius: 22px;
-  border: 2px solid var(--window-edge);
+  border: 3px solid var(--window-edge);
   background-color: var(--window-bg);
   box-shadow: var(--shadow-3);
   overflow: hidden;
@@ -898,13 +960,16 @@
   position: absolute;
   inset: 10% -7% -12% 16%;
   border-radius: 46% 54% 58% 42% / 44% 46% 54% 56%;
-  background: var(--primary-container);
-  opacity: 0.55;
+  background:
+    radial-gradient(circle at 34% 34%, color-mix(in oklab, var(--primary) 24%, transparent), transparent 66%),
+    radial-gradient(circle at 72% 70%, color-mix(in oklab, var(--tertiary) 14%, transparent), transparent 62%);
+  filter: blur(12px);
+  opacity: 0.9;
   animation: morph 26s var(--ease-in-out) infinite alternate;
 }
 
 [data-theme='dark'] .showcase__blob {
-  opacity: 0.45;
+  opacity: 0.7;
 }
 
 .showcase__tilt {
@@ -989,8 +1054,8 @@
   padding: clamp(22px, 3vw, 38px);
   border-radius: var(--r-2xl);
   overflow: hidden;
-  /* a slightly different tonal step, still flat */
-  background-color: color-mix(in oklab, var(--primary-container) 6%, var(--surface-1));
+  /* a slightly lighter warm panel, still flat */
+  background-color: color-mix(in oklab, var(--surface-2) 55%, var(--surface-1));
 }
 
 .builder__title {
@@ -1126,7 +1191,7 @@
   grid-template-columns: 46px 172px minmax(0, 1fr);
   height: 372px;
   border-radius: 20px;
-  border: 2px solid var(--window-edge);
+  border: 3px solid var(--window-edge);
   background: var(--m-bg);
   color: var(--m-ink);
   overflow: hidden;
