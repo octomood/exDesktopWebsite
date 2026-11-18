@@ -154,6 +154,11 @@
   --hero-glow: color-mix(in oklab, var(--p-coral-70) 26%, transparent);
   --window-bg: #ffffff;
   --window-bar: #f4f1ec;
+
+  /* translucent panels: the ambient shapes stay visible through the glass */
+  --glass-fill: color-mix(in oklab, var(--surface-1) 70%, transparent);
+  --glass-fill-soft: color-mix(in oklab, var(--surface-2) 46%, transparent);
+  --glass-blur: blur(22px) saturate(1.25);
 }
 
 /* ---------- 2. semantic: dark ---------- */
@@ -212,6 +217,11 @@
   --hero-glow: color-mix(in oklab, var(--p-coral-70) 20%, transparent);
   --window-bg: #1e1a17;
   --window-bar: #282219;
+
+  /* translucent panels: the ambient shapes stay visible through the glass */
+  --glass-fill: color-mix(in oklab, var(--surface-1) 50%, transparent);
+  --glass-fill-soft: color-mix(in oklab, var(--surface-2) 34%, transparent);
+  --glass-blur: blur(22px) saturate(1.25);
 }
 
 /* ---------- 3. components ---------- */
