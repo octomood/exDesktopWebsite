@@ -155,7 +155,7 @@ export const ru: Dict = {
     pick: 'Ваша система',
     recommended: 'Основная сборка',
     alternative: 'Другой вариант',
-    command: 'Или одной командой в терминале',
+    command: 'Команда в терминале',
     allReleases: 'Все файлы и версии на GitHub',
     requirementsTitle: 'Что нужно',
     requirements: [

@@ -155,7 +155,7 @@ export const en: Dict = {
     pick: 'Your system',
     recommended: 'Main build',
     alternative: 'Other option',
-    command: 'Or one command in the terminal',
+    command: 'Terminal command',
     allReleases: 'Every file and version on GitHub',
     requirementsTitle: 'What you need',
     requirements: [
