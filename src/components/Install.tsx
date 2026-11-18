@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Icon } from './Icon';
+import { Reveal } from './Reveal';
 import { useI18n } from '../i18n';
 import { assetUrl, installCommand, release } from '../data/release';
 import { copyText } from '../lib/clipboard';
@@ -63,15 +64,15 @@ export function Install() {
   return (
     <section className="section install" id="install">
       <div className="wrap">
-        <div className="section-head">
+        <Reveal className="section-head">
           <div>
             <p className="eyebrow">{t.install.eyebrow}</p>
             <h2 className="h2">{t.install.title}</h2>
           </div>
           <p className="lead">{t.install.lead}</p>
-        </div>
+        </Reveal>
 
-        <div className="install-picker">
+        <Reveal variant="soft" className="install-picker">
           <span className="install-picker__label">{t.install.pick}</span>
           <div className="segmented" role="group" aria-label={t.install.pick}>
             {(Object.keys(osIcons) as OsKey[]).map((key) => (
@@ -87,9 +88,9 @@ export function Install() {
               </button>
             ))}
           </div>
-        </div>
+        </Reveal>
 
-        <div className="install-card">
+        <Reveal variant="window" className="install-card material">
           <div className="install-card__main">
             <div className="install-card__head">
               <span className="install-card__icon">
@@ -167,7 +168,7 @@ export function Install() {
               <Icon name="arrowUpRight" size={15} />
             </a>
           </aside>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

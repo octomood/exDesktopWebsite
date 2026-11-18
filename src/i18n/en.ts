@@ -6,7 +6,7 @@ export const en: Dict = {
   meta: {
     title: 'exDesktop — a Telegram Desktop client with Material Expressive',
     description:
-      'An open fork of Telegram Desktop: Material 3 Expressive, customisation, exteraGram and AyuGram features, plugins, and local Premium. Windows, Linux, macOS.',
+      'An open fork of Telegram Desktop: Material 3 Expressive, customisation that makes sense, checked plugins, and local Premium. Windows, Linux, macOS.',
   },
   nav: {
     features: 'Features',
@@ -35,10 +35,10 @@ export const en: Dict = {
   hero: {
     eyebrow: `Open client · ${release.tag}`,
     titleA: 'Telegram Desktop',
-    titleB: 'shaped around you',
-    lead: 'A fork built on the Telegram Desktop sources: Material 3 Expressive, customisation, exteraGram and AyuGram features, plugins, and local Premium. It installs next to your regular Telegram with its own data and its own shortcut.',
+    titleB: 'on your terms',
+    lead: 'A fork built on the Telegram Desktop sources: Material 3 Expressive, customisation that makes sense, checked plugins, and local Premium. It lives next to your regular Telegram — its own data, its own shortcut, the same account.',
     primary: 'Download exDesktop',
-    secondary: 'Read the docs',
+    secondary: 'Read the documentation',
     facts: [
       { label: 'Platforms', value: 'Windows · Linux · macOS' },
       { label: 'License', value: 'GPL-3.0' },
@@ -47,31 +47,31 @@ export const en: Dict = {
   },
   preview: {
     eyebrow: 'Interface',
-    title: 'Look first, install later',
-    lead: 'Five screens from the actual build. Switch the tabs — not one of these is a redrawn mockup.',
-    hint: 'Tabs also switch with the arrow keys',
+    title: 'This is what it actually looks like',
+    lead: 'Five screens from the current build. Not one redrawn mockup — just what you see after installing.',
+    hint: 'Arrow keys switch the tabs',
     tabs: [
       {
         id: 'appearance',
         label: 'Appearance',
         title: 'Material 3 in every corner',
-        text: 'Rounded corners, tonal surfaces, and an accent colour built from Material Design 3 elements rather than a theme stretched over the stock window.',
+        text: 'Rounded shapes, tonal surfaces, and an accent that paints buttons, selection, and bubbles. This is not a theme stretched over the stock window — the interface is built from Material Design 3 elements.',
         image: '/shots/appearance.webp',
         alt: 'exDesktop appearance settings with accent colours, icons, and interface options',
       },
       {
         id: 'messages',
         label: 'Messages',
-        title: 'Quick actions where you need them',
-        text: 'The quick action bar, message details, built-in QuoteReply, and translation that keeps the original formatting — no plugins required.',
+        title: 'Quick actions within reach',
+        text: 'The action bar, message details, QuoteReply, and translation that keeps formatting. All built in — no plugins required.',
         image: '/shots/messages.webp',
         alt: 'An exDesktop chat with the quick action bar and message menu open',
       },
       {
         id: 'plugins',
         label: 'Plugins',
-        title: 'A plugin is checked before it runs',
-        text: 'Install from a file, configure, export. Before the first run the client inspects what the plugin asks for and shows you the result.',
+        title: 'A check first, a launch second',
+        text: 'Install from a file, configure, export. Before the first run the client shows what the plugin asks for and never starts it quietly.',
         image: '/shots/plugins.webp',
         alt: 'The exDesktop plugins section with installed extensions and their settings',
       },
@@ -79,7 +79,7 @@ export const en: Dict = {
         id: 'privacy',
         label: 'Privacy',
         title: 'The switches you usually hunt for',
-        text: 'Hidden phone number, user IDs, registration date, streamer mode, and deleted message history — in one section instead of ten submenus.',
+        text: 'Hidden number, user IDs, registration date, streamer mode, and saved deleted messages. One section instead of ten submenus.',
         image: '/shots/privacy.webp',
         alt: 'exDesktop privacy settings with number hiding, user IDs, and streamer mode',
       },
@@ -87,7 +87,7 @@ export const en: Dict = {
         id: 'network',
         label: 'Network',
         title: 'Proxy and download speed',
-        text: 'A built-in tg-ws-proxy on Windows and faster file transfers. Useful where Telegram does not open on the first try.',
+        text: 'A built-in tg-ws-proxy on Windows and faster transfers. Noticeable wherever Telegram does not open on the first try.',
         image: '/shots/network.webp',
         alt: 'exDesktop network settings with proxy and download options',
       },
@@ -95,13 +95,13 @@ export const en: Dict = {
   },
   info: {
     eyebrow: 'Under the hood',
-    title: 'A client, not a theme over Telegram',
-    lead: 'The project lives on the Telegram Desktop sources, so upstream updates arrive together with community features. Here is what already works in the current release.',
+    title: 'Not a theme. A client.',
+    lead: 'The project lives on the Telegram Desktop sources, so upstream updates arrive together with community features. Everything below already ships in the release — not in a plan.',
     cards: [
       {
         icon: 'appearance',
         title: 'Appearance',
-        text: 'Material 3, custom icons, sticker size, system fonts and emoji. The “All chats” tab can be removed entirely.',
+        text: 'Material 3, your own icons, sticker size, system fonts and emoji. The “All chats” tab can be removed entirely.',
       },
       {
         icon: 'messages',
@@ -111,7 +111,7 @@ export const en: Dict = {
       {
         icon: 'media',
         title: 'Input and media',
-        text: 'Calculations right in the input field, a character counter, favourite emoji, and video notes made from regular videos.',
+        text: 'Calculates right in the input field, counts characters, remembers favourite emoji, and turns regular videos into video notes.',
       },
       {
         icon: 'privacy',
@@ -121,18 +121,18 @@ export const en: Dict = {
       {
         icon: 'network',
         title: 'Network',
-        text: 'tg-ws-proxy on Windows, faster transfers, custom notification sounds, and no limit on the number of accounts.',
+        text: 'tg-ws-proxy on Windows, faster transfers, custom notification sounds, and no cap on the number of accounts.',
       },
       {
         icon: 'plugins',
         title: 'Plugins and AI',
-        text: 'Install plugins from a file, security checks, settings and export. AI Chat is in beta.',
+        text: 'Plugins install from a file, get checked before they run, and can be configured and exported. AI Chat is in beta.',
       },
     ],
     builder: {
       eyebrow: 'Customisation',
-      title: 'Build your own accent',
-      text: 'The interface colour is not nailed down. Pick an accent and a theme to see the same chat in different moods. Nothing is saved — this is a sandbox.',
+      title: 'Try your own accent',
+      text: 'The accent is not nailed down: it paints buttons, bubbles, badges and selection. Pick a colour and a theme — the mockup on the right repaints instantly. Nothing is saved, this is a sandbox.',
       accent: 'Accent',
       theme: 'Theme',
       light: 'Light',
@@ -150,8 +150,8 @@ export const en: Dict = {
   },
   install: {
     eyebrow: 'Install',
-    title: 'Five minutes and one file',
-    lead: 'exDesktop installs alongside Telegram Desktop: separate data, its own shortcut, the same account. Removing it breaks nothing.',
+    title: 'Five minutes to install',
+    lead: 'It sits next to Telegram Desktop: separate data, its own shortcut, the same account. If you change your mind, removing it breaks nothing.',
     pick: 'Your system',
     recommended: 'Main build',
     alternative: 'Other option',
@@ -160,7 +160,7 @@ export const en: Dict = {
     requirementsTitle: 'What you need',
     requirements: [
       'Windows 10 and 11 (x64), macOS 12+ on Intel or Apple Silicon, Linux x86_64',
-      'A separate data folder: your regular Telegram settings stay untouched',
+      'Its own data folder: your regular Telegram settings stay where they are',
       'For the Linux script: curl or wget and write access to your home directory',
     ],
     os: {
@@ -184,8 +184,8 @@ export const en: Dict = {
   },
   roadmap: {
     eyebrow: 'Roadmap',
-    title: 'Where the project is heading',
-    lead: 'Order and scope change — the client is built by the community. The statuses are honest: “done” means the feature is already in a release, not in a plan.',
+    title: 'What ships now and what comes next',
+    lead: 'People build this, not a marketing department. So “done” means “already in a release”, not “someday”.',
     statuses: {
       done: 'Done',
       work: 'In progress',
@@ -196,7 +196,7 @@ export const en: Dict = {
       {
         status: 'done',
         title: 'Material 3 Expressive',
-        text: 'Rounded corners, tonal surfaces, and accent colour across the main client screens.',
+        text: 'Rounded shapes, tonal surfaces, and the accent across the main client screens.',
       },
       {
         status: 'done',
@@ -211,7 +211,7 @@ export const en: Dict = {
       {
         status: 'work',
         title: 'Python plugin engine',
-        text: 'Python plugins with access to the client API. Still in development — not ready for everyday use.',
+        text: 'Python plugins with access to the client API. Still in development — too early for everyday use.',
       },
       {
         status: 'work',
@@ -229,12 +229,12 @@ export const en: Dict = {
         text: 'Move your accent, theme, and settings between devices through your account.',
       },
     ],
-    note: 'The roadmap describes a direction, not promised dates.',
+    note: 'The roadmap shows a direction. It does not promise dates.',
   },
   links: {
     eyebrow: 'Links',
-    title: 'Everything in one place',
-    lead: 'Releases, discussion, and source code. Bugs belong in issues — that is where they do not get lost.',
+    title: 'This is where the project lives',
+    lead: 'Releases, discussion and code. Bugs belong in issues — chat swallows them.',
     items: [
       {
         icon: 'telegram',

@@ -138,6 +138,7 @@ export function ThemeBuilder() {
             </div>
 
             <div className="mock__messages">
+              <div className="mock__day">Today</div>
               <div className="mock__bubble mock__bubble--in">{t.info.builder.chat.message}</div>
               <div className="mock__bubble mock__bubble--out">{t.info.builder.chat.me}</div>
               <div className="mock__bubble mock__bubble--in mock__bubble--short">Looks good</div>

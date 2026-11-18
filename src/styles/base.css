@@ -17,7 +17,14 @@ html {
 }
 
 body {
-  background: var(--bg);
+  background-color: var(--bg);
+  /* a single soft light source keeps the flat surfaces from reading as paper cut-outs */
+  background-image: radial-gradient(
+    1200px 560px at 74% -12%,
+    color-mix(in oklab, var(--primary) 7%, transparent),
+    transparent 62%
+  );
+  background-repeat: no-repeat;
   color: var(--ink);
   font-family: var(--font-sans);
   font-size: var(--fs-body);
@@ -401,9 +408,18 @@ ol {
 .card {
   position: relative;
   border-radius: var(--card-radius);
-  background: var(--surface);
-  border: 1px solid var(--line);
+  background-color: var(--surface-1);
+  border: 1px solid var(--card-edge);
+  box-shadow: var(--card-shadow);
   padding: var(--card-pad);
+}
+
+/* raised material: tonal fill, lit top edge, soft cast shadow */
+.material {
+  background-color: var(--surface-1);
+  background-image: linear-gradient(180deg, var(--card-sheen), transparent 46%);
+  border: 1px solid var(--card-edge);
+  box-shadow: var(--card-shadow);
 }
 
 .card--flat {
@@ -421,19 +437,33 @@ ol {
 
 .card--interactive:hover {
   transform: translateY(-3px);
-  border-color: var(--line-strong);
-  box-shadow: var(--shadow-2);
+  border-color: var(--card-edge-hover);
+  box-shadow: var(--card-shadow-hover);
 }
 
 /* ---------- scroll reveal ---------- */
 
 .reveal {
   opacity: 0;
-  transform: translateY(18px);
   transition:
-    opacity var(--dur-4) var(--ease-out),
-    transform var(--dur-4) var(--ease-out);
+    opacity 0.7s var(--ease-out),
+    transform 1s var(--ease-spring);
   transition-delay: var(--reveal-delay, 0ms);
+}
+
+/* text and small blocks */
+.reveal--up {
+  transform: translateY(20px);
+}
+
+.reveal--soft {
+  transform: translateY(10px);
+}
+
+/* windows and cards: they rise into place and settle */
+.reveal--window {
+  transform: translateY(34px) scale(0.965);
+  transition-duration: 0.85s, 1.15s;
 }
 
 .reveal.is-in {

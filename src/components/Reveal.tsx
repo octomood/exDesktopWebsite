@@ -5,10 +5,11 @@ type RevealProps = {
   children: ReactNode;
   delay?: number;
   className?: string;
-  as?: 'div' | 'section' | 'article' | 'li' | 'header';
+  as?: 'div' | 'section' | 'article' | 'li' | 'header' | 'nav';
+  variant?: 'up' | 'soft' | 'window';
 };
 
-export function Reveal({ children, delay = 0, className = '', as = 'div' }: RevealProps) {
+export function Reveal({ children, delay = 0, className = '', as = 'div', variant = 'up' }: RevealProps) {
   const ref = useRef<HTMLElement | null>(null);
   const [shown, setShown] = useState(false);
 
@@ -28,7 +29,7 @@ export function Reveal({ children, delay = 0, className = '', as = 'div' }: Reve
           }
         });
       },
-      { rootMargin: '0px 0px -6% 0px', threshold: 0.06 },
+      { rootMargin: '0px 0px -8% 0px', threshold: 0.05 },
     );
     observer.observe(node);
     return () => observer.disconnect();
@@ -38,7 +39,11 @@ export function Reveal({ children, delay = 0, className = '', as = 'div' }: Reve
   const style = { '--reveal-delay': `${delay}ms` } as CSSProperties;
 
   return (
-    <Tag ref={ref as never} className={`reveal ${shown ? 'is-in' : ''} ${className}`.trim()} style={style}>
+    <Tag
+      ref={ref as never}
+      className={`reveal reveal--${variant} ${shown ? 'is-in' : ''} ${className}`.trim()}
+      style={style}
+    >
       {children}
     </Tag>
   );

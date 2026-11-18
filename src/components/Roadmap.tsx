@@ -8,13 +8,13 @@ export function Roadmap() {
   return (
     <section className="section roadmap" id="roadmap">
       <div className="wrap">
-        <div className="section-head">
+        <Reveal className="section-head">
           <div>
             <p className="eyebrow">{t.roadmap.eyebrow}</p>
             <h2 className="h2">{t.roadmap.title}</h2>
           </div>
           <p className="lead">{t.roadmap.lead}</p>
-        </div>
+        </Reveal>
 
         <ol className="roadmap-list">
           {t.roadmap.items.map((item, index) => (

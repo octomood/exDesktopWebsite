@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import type { KeyboardEvent } from 'react';
 import { Icon } from './Icon';
+import { Reveal } from './Reveal';
 import { useI18n } from '../i18n';
 import { release } from '../data/release';
 
@@ -44,15 +45,15 @@ export function Preview() {
   return (
     <section className="section preview" id="preview">
       <div className="wrap">
-        <div className="section-head">
+        <Reveal className="section-head">
           <div>
             <p className="eyebrow">{t.preview.eyebrow}</p>
             <h2 className="h2">{t.preview.title}</h2>
           </div>
           <p className="lead">{t.preview.lead}</p>
-        </div>
+        </Reveal>
 
-        <div className="preview-shell">
+        <Reveal variant="window" className="preview-shell">
           <div className="preview-stage">
             <div className="preview-frame">
               <div className="preview-frame__bar">
@@ -146,7 +147,7 @@ export function Preview() {
               </p>
             </div>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

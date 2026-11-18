@@ -8,18 +8,18 @@ export function Links() {
   return (
     <section className="section links" id="links">
       <div className="wrap">
-        <div className="section-head">
+        <Reveal className="section-head">
           <div>
             <p className="eyebrow">{t.links.eyebrow}</p>
             <h2 className="h2">{t.links.title}</h2>
           </div>
           <p className="lead">{t.links.lead}</p>
-        </div>
+        </Reveal>
 
         <ul className="links-grid">
           {t.links.items.map((item, index) => (
-            <Reveal as="li" key={item.title} delay={index * 45}>
-              <a className="link-card" href={item.href} target="_blank" rel="noreferrer">
+            <Reveal as="li" key={item.title} delay={index * 55} variant="soft">
+              <a className="link-card material" href={item.href} target="_blank" rel="noreferrer">
                 <span className="link-card__top">
                   <span className="link-card__icon">
                     <Icon name={item.icon} size={20} />

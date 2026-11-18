@@ -9,17 +9,17 @@ export function Info() {
   return (
     <section className="section info" id="features">
       <div className="wrap">
-        <div className="section-head">
+        <Reveal className="section-head">
           <div>
             <p className="eyebrow">{t.info.eyebrow}</p>
             <h2 className="h2">{t.info.title}</h2>
           </div>
           <p className="lead">{t.info.lead}</p>
-        </div>
+        </Reveal>
 
         <ul className="feature-grid">
           {t.info.cards.map((card, index) => (
-            <Reveal as="li" key={card.title} delay={index * 60} className="feature">
+            <Reveal as="li" key={card.title} delay={index * 60} className="feature material">
               <span className="feature__icon">
                 <Icon name={card.icon} size={21} />
               </span>
@@ -29,7 +29,7 @@ export function Info() {
           ))}
         </ul>
 
-        <Reveal delay={80} className="info__builder">
+        <Reveal delay={60} variant="window" className="info__builder">
           <ThemeBuilder />
         </Reveal>
       </div>
