@@ -22,7 +22,7 @@ export function Links() {
               <a className="link-card material" href={item.href} target="_blank" rel="noreferrer">
                 <span className="link-card__top">
                   <span className="link-card__icon">
-                    <Icon name={item.icon} size={20} />
+                    <Icon name={item.icon} size={22} />
                   </span>
                   <span className="link-card__arrow">
                     <Icon name="arrowUpRight" size={17} />

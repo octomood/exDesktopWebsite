@@ -19,12 +19,6 @@ html {
 body {
   background-color: var(--bg);
   /* a single soft light source keeps the flat surfaces from reading as paper cut-outs */
-  background-image: radial-gradient(
-    1200px 560px at 74% -12%,
-    color-mix(in oklab, var(--primary) 7%, transparent),
-    transparent 62%
-  );
-  background-repeat: no-repeat;
   color: var(--ink);
   font-family: var(--font-sans);
   font-size: var(--fs-body);
@@ -289,7 +283,6 @@ ol {
 .btn--primary {
   background: var(--primary);
   color: var(--on-primary);
-  box-shadow: 0 10px 24px -14px color-mix(in oklab, var(--primary) 80%, transparent);
 }
 
 .btn--primary:hover {
@@ -414,10 +407,9 @@ ol {
   padding: var(--card-pad);
 }
 
-/* raised material: tonal fill, lit top edge, soft cast shadow */
+/* flat material: one tonal fill, one hairline outline, no bevel */
 .material {
   background-color: var(--surface-1);
-  background-image: linear-gradient(180deg, var(--card-sheen), transparent 46%);
   border: 1px solid var(--card-edge);
   box-shadow: var(--card-shadow);
 }

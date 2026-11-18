@@ -21,7 +21,7 @@ export function Info() {
           {t.info.cards.map((card, index) => (
             <Reveal as="li" key={card.title} delay={index * 60} className="feature material">
               <span className="feature__icon">
-                <Icon name={card.icon} size={21} />
+                <Icon name={card.icon} size={26} />
               </span>
               <h3 className="feature__title">{card.title}</h3>
               <p className="feature__text">{card.text}</p>

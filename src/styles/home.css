@@ -741,7 +741,7 @@
 .feature {
   display: flex;
   flex-direction: column;
-  padding: clamp(20px, 2vw, 28px);
+  padding: clamp(22px, 2.4vw, 28px);
   border-radius: var(--r-lg);
   transition:
     transform var(--dur-3) var(--ease-spring),
@@ -750,7 +750,7 @@
 }
 
 .feature:hover {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
   border-color: var(--card-edge-hover);
   box-shadow: var(--card-shadow-hover);
 }
@@ -758,10 +758,9 @@
 .feature__icon {
   display: grid;
   place-items: center;
-  width: 46px;
-  height: 46px;
-  border-radius: 16px;
-  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.22);
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
   background: var(--primary-container);
   color: var(--on-primary-container);
 }
@@ -777,16 +776,16 @@
 }
 
 .feature__title {
-  margin-top: 20px;
-  font-size: 1.02rem;
+  margin-top: 16px;
+  font-size: 1.15rem;
   font-weight: 600;
-  letter-spacing: -0.012em;
+  letter-spacing: -0.014em;
 }
 
 .feature__text {
   margin-top: 7px;
-  font-size: 0.89rem;
-  line-height: 1.6;
+  font-size: 1rem;
+  line-height: 1.55;
   color: var(--ink-2);
 }
 
@@ -806,8 +805,8 @@
   padding: clamp(22px, 3vw, 38px);
   border-radius: var(--r-2xl);
   overflow: hidden;
-  /* a tonal step, so the interactive block reads as a different surface */
-  background-color: color-mix(in oklab, var(--primary-container) 13%, var(--surface-1));
+  /* a slightly different tonal step, still flat */
+  background-color: color-mix(in oklab, var(--primary-container) 6%, var(--surface-1));
 }
 
 .builder__title {
@@ -818,7 +817,7 @@
 .builder__text {
   margin-top: 12px;
   max-width: 44ch;
-  font-size: 0.93rem;
+  font-size: 0.97rem;
   line-height: 1.62;
   color: var(--ink-2);
 }
@@ -1278,7 +1277,7 @@
 .install-card__note {
   margin-top: 18px;
   max-width: 54ch;
-  font-size: 0.92rem;
+  font-size: 0.96rem;
   line-height: 1.62;
   color: var(--ink-2);
 }
@@ -1402,8 +1401,7 @@
 .install-card__side {
   min-width: 0;
   padding: clamp(20px, 2.8vw, 34px);
-  background-color: color-mix(in oklab, var(--surface-2) 72%, var(--surface-1));
-  background-image: linear-gradient(180deg, var(--card-sheen), transparent 60%);
+  background-color: var(--surface-2);
   border-left: 1px solid var(--card-edge);
   display: flex;
   flex-direction: column;
@@ -1427,8 +1425,8 @@
 .install-list li {
   display: flex;
   gap: 9px;
-  font-size: 0.83rem;
-  line-height: 1.5;
+  font-size: 0.88rem;
+  line-height: 1.52;
   color: var(--ink-2);
 }
 
@@ -1633,11 +1631,10 @@
 .link-card__icon {
   display: grid;
   place-items: center;
-  width: 42px;
-  height: 42px;
-  border-radius: 14px;
+  width: 46px;
+  height: 46px;
+  border-radius: 15px;
   background: var(--surface-2);
-  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.06);
   color: var(--ink);
   transition: background-color var(--dur-2);
 }
@@ -1662,20 +1659,20 @@
 }
 
 .link-card__title {
-  margin-top: 18px;
-  font-size: 1rem;
+  margin-top: 20px;
+  font-size: 1.12rem;
   font-weight: 600;
 }
 
 .link-card__handle {
-  margin-top: 2px;
-  font-size: 0.7rem;
+  margin-top: 3px;
+  font-size: 0.76rem;
   color: var(--primary);
 }
 
 .link-card__text {
   margin-top: 8px;
-  font-size: 0.85rem;
+  font-size: 0.96rem;
   line-height: 1.55;
   color: var(--ink-2);
 }
