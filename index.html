@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ru" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>exDesktop — клиент Telegram Desktop с Material Expressive</title>
+    <meta
+      name="description"
+      content="Открытый форк Telegram Desktop: Material 3 Expressive, кастомизация, функции exteraGram и AyuGram, плагины и локальный Premium. Windows, Linux, macOS."
+    />
+    <meta name="theme-color" content="#F7F5F1" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0F0E0D" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="exDesktop" />
+    <meta property="og:title" content="exDesktop — Telegram Desktop под ваш характер" />
+    <meta
+      property="og:description"
+      content="Material 3 Expressive, кастомизация, функции exteraGram и AyuGram, плагины. Ставится рядом с Telegram и хранит данные отдельно."
+    />
+    <meta property="og:image" content="/shots/appearance.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="/logo.png" />
+    <link rel="apple-touch-icon" href="/logo.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Onest:wght@400;500;600;700&family=Unbounded:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preload" as="image" href="/shots/appearance.webp" fetchpriority="high" />
+
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('exd-theme');
+          var system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          document.documentElement.dataset.theme = saved === 'light' || saved === 'dark' ? saved : system;
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
