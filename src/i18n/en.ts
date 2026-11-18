@@ -36,7 +36,7 @@ export const en: Dict = {
     eyebrow: `Open client · ${release.tag}`,
     titleA: 'Telegram Desktop',
     titleB: 'on your terms',
-    lead: 'A fork built on the Telegram Desktop sources: Material 3 Expressive, customisation that makes sense, checked plugins, and local Premium. It lives next to your regular Telegram — its own data, its own shortcut, the same account.',
+    lead: 'Rebuilt by people who actually use it: Material 3, settings down to the last pixel, checked plugins, and Premium without a subscription. It installs next to the original — separate data, one account.',
     primary: 'Download exDesktop',
     secondary: 'Read the documentation',
     facts: [

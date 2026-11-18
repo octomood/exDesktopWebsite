@@ -427,7 +427,7 @@
 .app-window {
   position: relative;
   border-radius: 20px;
-  border: 1px solid var(--line);
+  border: 2px solid var(--window-edge);
   background: var(--surface);
   box-shadow: var(--shadow-3);
   overflow: hidden;
@@ -549,7 +549,7 @@
 
 .preview-frame {
   border-radius: 22px;
-  border: 1px solid var(--card-edge);
+  border: 2px solid var(--window-edge);
   background-color: var(--surface-1);
   box-shadow: var(--shadow-3);
   overflow: hidden;
@@ -942,7 +942,7 @@
   grid-template-columns: 46px 172px minmax(0, 1fr);
   height: 372px;
   border-radius: 20px;
-  border: 1px solid var(--line);
+  border: 2px solid var(--window-edge);
   background: var(--m-bg);
   color: var(--m-ink);
   overflow: hidden;

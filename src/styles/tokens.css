@@ -123,6 +123,7 @@
 
   --line: rgb(23 20 16 / 0.1);
   --line-strong: rgb(23 20 16 / 0.18);
+  --window-edge: rgb(23 20 16 / 0.26);
 
   --primary: var(--p-coral-50);
   --primary-hover: var(--p-coral-60);
@@ -177,6 +178,7 @@
 
   --line: rgb(246 242 236 / 0.12);
   --line-strong: rgb(246 242 236 / 0.2);
+  --window-edge: rgb(246 242 236 / 0.26);
 
   --primary: var(--p-coral-70);
   --primary-hover: var(--p-coral-80);

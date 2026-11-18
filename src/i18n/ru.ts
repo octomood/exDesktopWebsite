@@ -36,7 +36,7 @@ export const ru: Dict = {
     eyebrow: `Открытый клиент · ${release.tag}`,
     titleA: 'Telegram Desktop',
     titleB: 'по-своему',
-    lead: 'Форк на исходниках Telegram Desktop: Material 3 Expressive, кастомизация без костылей, плагины с проверкой и локальный Premium. Живёт рядом с обычным Telegram — свои данные, свой ярлык, тот же аккаунт.',
+    lead: 'Пересобран теми, кто им пользуется: Material 3, настройки до последнего пикселя, плагины с проверкой и Premium без подписки. Ставится рядом с оригиналом — данные отдельные, аккаунт общий.',
     primary: 'Скачать exDesktop',
     secondary: 'Посмотреть документацию',
     facts: [
