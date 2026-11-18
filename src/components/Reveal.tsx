@@ -20,13 +20,11 @@ export function Reveal({ children, delay = 0, className = '', as = 'div', varian
       setShown(true);
       return;
     }
+    /* re-arm when the block leaves the viewport so the reveal replays on the next visit */
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setShown(true);
-            observer.disconnect();
-          }
+          setShown(entry.isIntersecting);
         });
       },
       { rootMargin: '0px 0px -8% 0px', threshold: 0.05 },

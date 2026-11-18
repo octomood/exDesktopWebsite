@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 import { ThemeProvider } from './theme/ThemeProvider';
 import { I18nProvider, useI18n } from './i18n';
 import { Backdrop } from './components/Backdrop';
+import { CursorDot } from './components/CursorDot';
 import { Home } from './pages/Home';
 import { Docs } from './docs/Docs';
 import { NotFound } from './pages/NotFound';
@@ -42,6 +43,7 @@ function Shell() {
   return (
     <div className="app-shell">
       {isHome ? <Backdrop /> : null}
+      <CursorDot />
       <SkipLink />
       <Routes>
         <Route path="/" element={<Home />} />

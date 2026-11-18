@@ -21,6 +21,7 @@ export function Tilt({ children, className = '', max = 3.4 }: TiltProps) {
 
     const still = window.matchMedia('(prefers-reduced-motion: reduce)');
     let frame = 0;
+    let release = 0;
 
     const move = (event: PointerEvent) => {
       /* touch and pen drags should never bend the window */
@@ -31,6 +32,7 @@ export function Tilt({ children, className = '', max = 3.4 }: TiltProps) {
       const py = Math.min(1, Math.max(0, (event.clientY - rect.top) / rect.height));
 
       cancelAnimationFrame(frame);
+      window.clearTimeout(release);
       frame = requestAnimationFrame(() => {
         el.style.setProperty('--rx', `${(0.5 - py) * max * 2}deg`);
         el.style.setProperty('--ry', `${(px - 0.5) * max * 2}deg`);
@@ -45,8 +47,15 @@ export function Tilt({ children, className = '', max = 3.4 }: TiltProps) {
       el.classList.remove('is-tilting');
       el.style.removeProperty('--rx');
       el.style.removeProperty('--ry');
-      el.style.removeProperty('--mx');
-      el.style.removeProperty('--my');
+      /*
+       * Keep the highlight where the pointer left it while its opacity fades,
+       * otherwise it snaps to the centre before disappearing.
+       */
+      window.clearTimeout(release);
+      release = window.setTimeout(() => {
+        el.style.removeProperty('--mx');
+        el.style.removeProperty('--my');
+      }, 320);
     };
 
     el.addEventListener('pointermove', move);
@@ -54,6 +63,7 @@ export function Tilt({ children, className = '', max = 3.4 }: TiltProps) {
     el.addEventListener('blur', reset);
     return () => {
       cancelAnimationFrame(frame);
+      window.clearTimeout(release);
       el.removeEventListener('pointermove', move);
       el.removeEventListener('pointerleave', reset);
       el.removeEventListener('blur', reset);

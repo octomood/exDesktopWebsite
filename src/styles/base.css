@@ -478,6 +478,47 @@ ol {
   transform: none;
 }
 
+/* ---------- decorative cursor dot ---------- */
+
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 95;
+  width: 9px;
+  height: 9px;
+  margin: -4.5px 0 0 -4.5px;
+  border-radius: 50%;
+  background: var(--primary);
+  pointer-events: none;
+  opacity: 0;
+  transform: translate3d(-100px, -100px, 0);
+  transition:
+    opacity var(--dur-2) var(--ease-out),
+    width var(--dur-2) var(--ease-spring),
+    height var(--dur-2) var(--ease-spring),
+    margin var(--dur-2) var(--ease-spring),
+    background-color var(--dur-2) var(--ease-out);
+  will-change: transform;
+}
+
+.cursor-dot.is-visible {
+  opacity: 1;
+}
+
+.cursor-dot.is-active {
+  width: 26px;
+  height: 26px;
+  margin: -13px 0 0 -13px;
+  background: color-mix(in oklab, var(--primary) 55%, transparent);
+}
+
+@media (pointer: coarse) {
+  .cursor-dot {
+    display: none;
+  }
+}
+
 /* ---------- scrollbar ---------- */
 
 @supports (scrollbar-width: thin) {
