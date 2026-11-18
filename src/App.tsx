@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 import { ThemeProvider } from './theme/ThemeProvider';
 import { I18nProvider, useI18n } from './i18n';
+import { Backdrop } from './components/Backdrop';
 import { Home } from './pages/Home';
 import { Docs } from './docs/Docs';
 import { NotFound } from './pages/NotFound';
@@ -34,19 +35,31 @@ function SkipLink() {
   );
 }
 
+function Shell() {
+  const { pathname } = useLocation();
+  const isHome = pathname === '/';
+
+  return (
+    <div className="app-shell">
+      {isHome ? <Backdrop /> : null}
+      <SkipLink />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/docs" element={<Docs />} />
+        <Route path="/docs/:slug" element={<Docs />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </div>
+  );
+}
+
 export default function App() {
   return (
     <ThemeProvider>
       <I18nProvider>
         <BrowserRouter>
           <ScrollManager />
-          <SkipLink />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/docs" element={<Docs />} />
-            <Route path="/docs/:slug" element={<Docs />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <Shell />
         </BrowserRouter>
       </I18nProvider>
     </ThemeProvider>

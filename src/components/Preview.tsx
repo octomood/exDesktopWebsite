@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import type { KeyboardEvent } from 'react';
 import { Icon } from './Icon';
 import { Reveal } from './Reveal';
+import { Tilt } from './Tilt';
 import { useI18n } from '../i18n';
 import { release } from '../data/release';
 
@@ -55,7 +56,8 @@ export function Preview() {
 
         <Reveal variant="window" className="preview-shell">
           <div className="preview-stage">
-            <div className="preview-frame">
+            <Tilt className="preview-tilt">
+              <div className="preview-frame">
               <div className="preview-frame__bar">
                 <span className="app-window__dots" aria-hidden="true">
                   <i />
@@ -80,8 +82,9 @@ export function Preview() {
                     aria-hidden={index !== active}
                   />
                 ))}
+                </div>
               </div>
-            </div>
+            </Tilt>
           </div>
 
           <div className="preview-panel">

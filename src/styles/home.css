@@ -1,4 +1,103 @@
 /* ------------------------------------------------------------------
+   App shell and ambient Material shapes
+------------------------------------------------------------------ */
+
+.app-shell {
+  position: relative;
+  isolation: isolate;
+  z-index: 0;
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+.backdrop__shape {
+  position: absolute;
+  top: var(--t);
+  left: var(--l);
+  width: var(--w);
+  height: var(--h);
+  border-radius: var(--r, 50%);
+  background: color-mix(in oklab, var(--c) var(--mix, 10%), transparent);
+  opacity: 0;
+  animation: shape-rise var(--dur, 42s) var(--ease-in-out) infinite;
+  animation-delay: var(--delay, 0s);
+  will-change: transform, opacity;
+}
+
+/* the shapes drift upward, slowly enough to read as background, not motion */
+@keyframes shape-rise {
+  0% {
+    transform: translate3d(0, 120px, 0) rotate(0deg) scale(0.92);
+    opacity: 0;
+  }
+  16% {
+    opacity: 0.55;
+  }
+  68% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translate3d(0, -220px, 0) rotate(16deg) scale(1.05);
+    opacity: 0;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Pointer tilt for screenshots
+------------------------------------------------------------------ */
+
+.tilt {
+  --rx: 0deg;
+  --ry: 0deg;
+  --mx: 50%;
+  --my: 50%;
+  position: relative;
+  border-radius: var(--tilt-r, 22px);
+  transform: perspective(1200px) rotateX(var(--rx)) rotateY(var(--ry));
+  transition: transform 0.55s var(--ease-out);
+  will-change: transform;
+}
+
+.tilt.is-tilting {
+  transition: transform 0.1s linear;
+}
+
+.tilt::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(
+    360px circle at var(--mx) var(--my),
+    rgb(255 255 255 / 0.13),
+    transparent 62%
+  );
+  opacity: 0;
+  transition: opacity 0.3s var(--ease-out);
+}
+
+.tilt.is-tilting::after {
+  opacity: 1;
+}
+
+.hero-tilt {
+  --tilt-r: 20px;
+}
+
+.preview-tilt,
+.showcase__tilt {
+  --tilt-r: 22px;
+}
+
+/* ------------------------------------------------------------------
    Header
 ------------------------------------------------------------------ */
 
@@ -428,7 +527,7 @@
   position: relative;
   border-radius: 20px;
   border: 2px solid var(--window-edge);
-  background: var(--surface);
+  background: var(--window-bg);
   box-shadow: var(--shadow-3);
   overflow: hidden;
 }
@@ -550,7 +649,7 @@
 .preview-frame {
   border-radius: 22px;
   border: 2px solid var(--window-edge);
-  background-color: var(--surface-1);
+  background-color: var(--window-bg);
   box-shadow: var(--shadow-3);
   overflow: hidden;
 }
@@ -561,7 +660,7 @@
   gap: 10px;
   height: 40px;
   padding-inline: 14px;
-  background: var(--surface-2);
+  background: var(--window-bar);
   border-bottom: 1px solid var(--line);
 }
 
@@ -726,6 +825,91 @@
 
 .flip-x {
   transform: scaleX(-1);
+}
+
+/* ------------------------------------------------------------------
+   Showcase (settings screen)
+------------------------------------------------------------------ */
+
+.showcase {
+  overflow: clip;
+}
+
+.showcase__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
+  gap: clamp(28px, 4vw, 64px);
+  align-items: center;
+}
+
+.showcase__title {
+  margin-top: 10px;
+}
+
+.showcase__lead {
+  margin-top: 14px;
+  max-width: 40ch;
+}
+
+.showcase__points {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 26px;
+}
+
+.showcase__points li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.showcase__mark {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 26px;
+  height: 26px;
+  margin-top: 1px;
+  border-radius: 9px;
+  background: var(--primary-container);
+  color: var(--on-primary-container);
+}
+
+.showcase__points b {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.showcase__points span span {
+  display: block;
+  margin-top: 1px;
+  font-size: 0.88rem;
+  color: var(--ink-2);
+}
+
+.showcase__visual {
+  position: relative;
+}
+
+.showcase__blob {
+  position: absolute;
+  inset: 10% -7% -12% 16%;
+  border-radius: 46% 54% 58% 42% / 44% 46% 54% 56%;
+  background: var(--primary-container);
+  opacity: 0.55;
+  animation: morph 26s var(--ease-in-out) infinite alternate;
+}
+
+[data-theme='dark'] .showcase__blob {
+  opacity: 0.45;
+}
+
+.showcase__tilt {
+  position: relative;
+  z-index: 1;
 }
 
 /* ------------------------------------------------------------------
@@ -931,10 +1115,10 @@
 /* --- live mock --- */
 
 .mock {
-  --m-bg: #171513;
-  --m-side: #121110;
-  --m-panel: #1f1c19;
-  --m-bubble: #26221e;
+  --m-bg: #17181b;
+  --m-side: #121316;
+  --m-panel: #1e1f23;
+  --m-bubble: #25262b;
   --m-ink: #f4f0ea;
   --m-ink-2: #a49c92;
   --m-line: rgb(255 255 255 / 0.08);
@@ -1858,6 +2042,21 @@
     grid-template-columns: minmax(0, 1fr);
   }
 
+  .showcase__grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 34px;
+  }
+
+  .showcase__visual {
+    width: 100%;
+    max-width: 660px;
+    margin-inline: auto;
+  }
+
+  .showcase__lead {
+    max-width: 52ch;
+  }
+
   .preview-panel {
     gap: 16px;
   }
@@ -2063,5 +2262,26 @@
 
   .roadmap-note {
     padding-left: 30px;
+  }
+}
+
+@media (max-width: 620px) {
+  .backdrop {
+    opacity: 0.6;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backdrop__shape {
+    animation: none;
+    opacity: 0.3;
+  }
+
+  .showcase__blob {
+    animation: none;
+  }
+
+  .tilt {
+    transform: none;
   }
 }

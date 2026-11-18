@@ -115,6 +115,14 @@ export type Dict = {
     hint: string;
     tabs: PreviewTab[];
   };
+  showcase: {
+    eyebrow: string;
+    title: string;
+    lead: string;
+    windowTitle: string;
+    alt: string;
+    points: { label: string; text: string }[];
+  };
   info: {
     eyebrow: string;
     title: string;

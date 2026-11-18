@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import type { CSSProperties } from 'react';
 import { Icon } from './Icon';
+import { Tilt } from './Tilt';
 import { useI18n } from '../i18n';
 
 export function Hero() {
@@ -49,28 +50,31 @@ export function Hero() {
         </div>
 
         <div className="hero-visual hero-enter" style={{ '--d': '180ms' } as CSSProperties}>
-          <div className="hero-blob" aria-hidden="true" />
-          <div className="app-window">
-            <div className="app-window__shot-wrap">
-              <img
-                className="app-window__shot"
-                src="/shots/appearance.webp"
-                alt={t.preview.tabs[0].alt}
-                width={1600}
-                height={1000}
-                fetchPriority="high"
-              />
-            </div>
-          </div>
+          <Tilt className="hero-tilt">
+            <div className="hero-blob" aria-hidden="true" />
 
-          <div className="hero-badge">
-            <span className="hero-badge__ico">
-              <Icon name="spark" size={16} />
-            </span>
-            <span>
-              <b>Material 3</b> Expressive
-            </span>
-          </div>
+            <div className="app-window">
+              <div className="app-window__shot-wrap">
+                <img
+                  className="app-window__shot"
+                  src="/shots/appearance.webp"
+                  alt={t.preview.tabs[0].alt}
+                  width={1600}
+                  height={1000}
+                  fetchPriority="high"
+                />
+              </div>
+            </div>
+
+            <div className="hero-badge">
+              <span className="hero-badge__ico">
+                <Icon name="spark" size={16} />
+              </span>
+              <span>
+                <b>Material 3</b> Expressive
+              </span>
+            </div>
+          </Tilt>
         </div>
       </div>
 

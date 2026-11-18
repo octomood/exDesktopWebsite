@@ -93,6 +93,18 @@ export const en: Dict = {
       },
     ],
   },
+  showcase: {
+    eyebrow: 'Settings',
+    title: 'One window, not a text file',
+    lead: 'Appearance, privacy, network, and notifications sit in labelled sections with search. Finding a switch takes seconds, not half an hour.',
+    windowTitle: 'Settings',
+    alt: 'exDesktop settings with appearance, privacy, and network sections',
+    points: [
+      { label: 'Search', text: 'one field instead of ten submenus' },
+      { label: 'Accent and icons', text: 'changed in two clicks' },
+      { label: 'Privacy next door', text: 'not buried in your profile' },
+    ],
+  },
   info: {
     eyebrow: 'Under the hood',
     title: 'Not a theme. A client.',
