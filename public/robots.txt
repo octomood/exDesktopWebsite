@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://exdesktop.xyz/sitemap.xml

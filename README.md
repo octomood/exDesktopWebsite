@@ -1,32 +1,82 @@
-# React + TypeScript + Vite
+# exDesktop — концепт сайта
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Редизайн сайта [exDesktop](https://github.com/metawka/exDesktop): неофициального клиента Telegram
+для Windows, Linux и macOS. Сайт собран как самостоятельный концепт для конкурса — не как референс
+текущей заглушки.
 
-Currently, two official plugins are available:
+## Что внутри
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Главная**: hero, интерактивное превью реальных экранов клиента, блок возможностей,
+  песочница акцентного цвета, установка с выбором ОС, roadmap, ссылки, футер.
+- **Документация**: 10 статей в трёх разделах, поиск с `⌘K`, оглавление со scroll-spy,
+  подсветка кода, копирование команд, prev/next, мобильный drawer.
+- **Две темы**: светлая и тёмная, выбор запоминается, по умолчанию — системная.
+- **Два языка**: русский и английский, переключатель в шапке, выбор запоминается.
+- **Доступность**: skip-link, фокус-ринги, `aria` для табов и меню, ловушка фокуса в мобильном
+  меню, `prefers-reduced-motion`.
 
-## React Compiler
+## Стек
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React 19 + TypeScript
+- Vite 8
+- React Router 7
+- CSS: свои токены (primitive → semantic → component), без UI-библиотек
 
-## Expanding the Oxlint configuration
+## Запуск
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+npm run dev      # http://localhost:5173
+npm run build    # production-сборка в dist/
+npm run preview  # локальный просмотр сборки
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## Структура
+
+```
+src/
+  components/     шапка, hero, секции главной, футер, иконки
+  docs/           движок документации: контент, поиск, TOC, подсветка
+  i18n/           словари ru/en и провайдер языка
+  theme/          провайдер темы
+  styles/         tokens.css, base.css, home.css, docs.css
+  data/           версия и ссылки релиза
+  lib/            утилита копирования
+```
+
+Контент документации лежит в `src/docs/content.ts` — это типизированные блоки
+(абзац, список, шаг, код, врезка, таблица), поэтому новую статью можно добавить без вёрстки.
+
+## Дизайн
+
+Визуальный язык — Material 3 Expressive: крупная типографика Unbounded, скругления,
+тональные поверхности, пружинные микровзаимодействия. Палитра построена вокруг кораллового
+цвета логотипа, второй акцент — глубокий бирюзовый.
+
+Все цвета, радиусы, отступы и типографика вынесены в `src/styles/tokens.css`. Смена акцента
+или темы не требует правок в компонентах.
+
+## Деплой
+
+Сайт статический, но использует `BrowserRouter`, поэтому хостингу нужен fallback на
+`index.html`:
+
+- Netlify — `public/_redirects`
+- Vercel — `vercel.json`
+- nginx — `try_files $uri $uri/ /index.html;`
+
+## Конкурс и Entire
+
+Репозиторий ведётся в git с первого дня. Чтобы результат был виден на
+[entire.com](https://entire.com), репозиторий нужно запушить в GitHub и подключить к Entire
+с включённым Trials:
+
+1. Создать репозиторий на GitHub и запушить `main`.
+2. Установить приложение Entire для этого репозитория.
+3. Включить Trials в настройках проекта Entire.
+4. Дальше коммитить в `main` — сессии попадут в проверку автоматически.
+
+## Лицензия и права
+
+Telegram — торговая марка Telegram FZ-LLC. exDesktop распространяется под GPL-3.0.
+Скриншоты интерфейса взяты из репозитория проекта.
