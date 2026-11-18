@@ -65,7 +65,6 @@ export function Hero() {
                   draggable={false}
                 />
               </div>
-              <span className="window-accent" aria-hidden="true" />
             </div>
 
             <div className="hero-badge">

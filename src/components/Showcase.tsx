@@ -57,7 +57,6 @@ export function Showcase() {
                   draggable={false}
                 />
               </div>
-              <span className="window-accent" aria-hidden="true" />
             </div>
           </Tilt>
         </Reveal>

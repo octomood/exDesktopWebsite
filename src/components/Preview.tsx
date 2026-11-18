@@ -84,7 +84,6 @@ export function Preview() {
                   />
                 ))}
                 </div>
-                <span className="window-accent" aria-hidden="true" />
               </div>
             </Tilt>
           </div>
