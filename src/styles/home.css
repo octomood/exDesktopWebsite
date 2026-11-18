@@ -1169,6 +1169,60 @@
   font-size: 0.8rem;
 }
 
+/* OS switch: a sliding pill plus a morphing card */
+.segmented--os {
+  position: relative;
+}
+
+.segmented__thumb {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 0;
+  z-index: 0;
+  border-radius: var(--r-pill);
+  background: var(--surface-3);
+  box-shadow: var(--shadow-1);
+  pointer-events: none;
+  transition:
+    transform 0.38s var(--ease-spring),
+    width 0.38s var(--ease-out);
+}
+
+.segmented--os .segmented__btn {
+  position: relative;
+  z-index: 1;
+}
+
+.segmented--os .segmented__btn.is-active {
+  background: transparent;
+  box-shadow: none;
+}
+
+.install-stage {
+  width: 100%;
+  transition: height 0.5s var(--ease-out);
+}
+
+.install-stage.is-morphing {
+  overflow: hidden;
+}
+
+.install-card {
+  animation: install-swap 0.5s var(--ease-out) both;
+}
+
+@keyframes install-swap {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 .builder__note {
   display: flex;
   align-items: center;

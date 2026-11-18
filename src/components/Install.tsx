@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { Icon } from './Icon';
 import { Reveal } from './Reveal';
 import { Tilt } from './Tilt';
@@ -25,6 +25,50 @@ export function Install() {
   const { t } = useI18n();
   const [os, setOs] = useState<OsKey>(detectOs);
   const [copied, setCopied] = useState(false);
+  const [thumb, setThumb] = useState({ left: 0, width: 0 });
+  const [stageH, setStageH] = useState<number | 'auto'>('auto');
+  const stageRef = useRef<HTMLDivElement>(null);
+  const segRef = useRef<HTMLDivElement>(null);
+  const btnRefs = useRef<(HTMLButtonElement | null)[]>([]);
+
+  /* keep the sliding pill under the active OS, including on resize and language change */
+  useLayoutEffect(() => {
+    const measure = () => {
+      const index = (Object.keys(osIcons) as OsKey[]).indexOf(os);
+      const button = btnRefs.current[index];
+      const container = segRef.current;
+      if (!button || !container) return;
+      const c = container.getBoundingClientRect();
+      const b = button.getBoundingClientRect();
+      setThumb({ left: b.left - c.left, width: b.width });
+    };
+    measure();
+    window.addEventListener('resize', measure);
+    return () => window.removeEventListener('resize', measure);
+  }, [os, t]);
+
+  /* morph the card height between OS variants instead of jumping */
+  const changeOs = (key: OsKey) => {
+    if (key === os) return;
+    const card = stageRef.current?.firstElementChild as HTMLElement | null;
+    if (card) setStageH(card.getBoundingClientRect().height);
+    setOs(key);
+  };
+
+  useLayoutEffect(() => {
+    if (stageH === 'auto') return;
+    const card = stageRef.current?.firstElementChild as HTMLElement | null;
+    if (!card) return;
+    const frame = requestAnimationFrame(() => setStageH(card.getBoundingClientRect().height));
+    return () => cancelAnimationFrame(frame);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [os]);
+
+  useEffect(() => {
+    if (stageH === 'auto') return;
+    const timer = window.setTimeout(() => setStageH('auto'), 540);
+    return () => window.clearTimeout(timer);
+  }, [stageH]);
 
   useEffect(() => {
     if (!copied) return;
@@ -75,14 +119,22 @@ export function Install() {
 
         <Reveal variant="soft" className="install-picker">
           <span className="install-picker__label">{t.install.pick}</span>
-          <div className="segmented" role="group" aria-label={t.install.pick}>
-            {(Object.keys(osIcons) as OsKey[]).map((key) => (
+          <div className="segmented segmented--os" role="group" aria-label={t.install.pick} ref={segRef}>
+            <span
+              className="segmented__thumb"
+              aria-hidden="true"
+              style={{ transform: `translateX(${thumb.left}px)`, width: thumb.width }}
+            />
+            {(Object.keys(osIcons) as OsKey[]).map((key, index) => (
               <button
                 key={key}
+                ref={(node) => {
+                  btnRefs.current[index] = node;
+                }}
                 type="button"
                 className={`segmented__btn ${os === key ? 'is-active' : ''}`}
                 aria-pressed={os === key}
-                onClick={() => setOs(key)}
+                onClick={() => changeOs(key)}
               >
                 <Icon name={osIcons[key]} size={17} />
                 {t.install.os[key].name}
@@ -93,7 +145,12 @@ export function Install() {
 
         <Reveal variant="window" className="install-cell">
           <Tilt className="install-tilt">
-          <div className="install-card material">
+          <div
+            className={`install-stage ${stageH === 'auto' ? '' : 'is-morphing'}`}
+            ref={stageRef}
+            style={stageH === 'auto' ? undefined : { height: stageH }}
+          >
+          <div className="install-card material" key={os}>
           <div className="install-card__main">
             <div className="install-card__head">
               <span className="install-card__icon">
@@ -171,6 +228,7 @@ export function Install() {
               <Icon name="arrowUpRight" size={15} />
             </a>
           </aside>
+          </div>
           </div>
           </Tilt>
         </Reveal>
