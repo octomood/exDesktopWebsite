@@ -69,6 +69,17 @@
   transition: transform 0.1s linear;
 }
 
+.tilt__inner {
+  position: relative;
+  border-radius: inherit;
+  transition: transform 0.65s var(--ease-spring);
+  transform-origin: center;
+}
+
+.tilt.is-tilting .tilt__inner {
+  transform: scale(1.022);
+}
+
 .tilt::after {
   content: '';
   position: absolute;
@@ -77,7 +88,7 @@
   pointer-events: none;
   background: radial-gradient(
     360px circle at var(--mx) var(--my),
-    rgb(255 255 255 / 0.13),
+    rgb(255 255 255 / 0.06),
     transparent 62%
   );
   opacity: 0;
@@ -587,7 +598,7 @@
 .app-window {
   position: relative;
   border-radius: 20px;
-  border: 3px solid var(--window-edge);
+  border: var(--window-edge-w, 3px) solid var(--window-edge);
   background: var(--window-bg);
   box-shadow: var(--shadow-3);
   overflow: hidden;
@@ -710,7 +721,7 @@
 .preview-frame {
   position: relative;
   border-radius: 22px;
-  border: 3px solid var(--window-edge);
+  border: var(--window-edge-w, 3px) solid var(--window-edge);
   background-color: var(--window-bg);
   box-shadow: var(--shadow-3);
   overflow: hidden;
@@ -1191,7 +1202,7 @@
   grid-template-columns: 46px 172px minmax(0, 1fr);
   height: 372px;
   border-radius: 20px;
-  border: 3px solid var(--window-edge);
+  border: var(--window-edge-w, 3px) solid var(--window-edge);
   background: var(--m-bg);
   color: var(--m-ink);
   overflow: hidden;

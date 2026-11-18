@@ -62,7 +62,7 @@ export function Tilt({ children, className = '', max = 3.4 }: TiltProps) {
 
   return (
     <div ref={ref} className={`tilt ${className}`.trim()}>
-      {children}
+      <div className="tilt__inner">{children}</div>
     </div>
   );
 }

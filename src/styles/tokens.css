@@ -224,5 +224,7 @@
   --card-radius: var(--r-xl);
   --card-pad: clamp(20px, 2.2vw, 30px);
   --field-radius: var(--r-md);
+  /* window chrome: set to 3px to bring the frames back */
+  --window-edge-w: 0px;
   --focus-ring: 0 0 0 3px var(--bg), 0 0 0 5.5px var(--primary);
 }
