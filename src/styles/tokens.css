@@ -210,8 +210,8 @@
   --page-wash: linear-gradient(180deg, #17130f 0%, var(--bg) 58%);
   --header-bg: color-mix(in oklab, var(--p-ink-950) 78%, transparent);
   --hero-glow: color-mix(in oklab, var(--p-coral-70) 20%, transparent);
-  --window-bg: #1a1b1e;
-  --window-bar: #232529;
+  --window-bg: #1e1a17;
+  --window-bar: #282219;
 }
 
 /* ---------- 3. components ---------- */

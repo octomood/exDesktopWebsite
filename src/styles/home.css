@@ -1180,10 +1180,10 @@
 /* --- live mock --- */
 
 .mock {
-  --m-bg: #17181b;
-  --m-side: #121316;
-  --m-panel: #1e1f23;
-  --m-bubble: #25262b;
+  --m-bg: #1b1714;
+  --m-side: #15120f;
+  --m-panel: #221d18;
+  --m-bubble: #2a231d;
   --m-ink: #f4f0ea;
   --m-ink-2: #a49c92;
   --m-line: rgb(255 255 255 / 0.08);
@@ -2328,6 +2328,18 @@
   .roadmap-note {
     padding-left: 30px;
   }
+}
+
+[data-theme='light'] .backdrop__shape {
+  background: color-mix(in oklab, var(--c) 14%, transparent);
+}
+
+[data-theme='light'] .window-accent::before {
+  background: color-mix(in oklab, var(--tertiary) 52%, transparent);
+}
+
+[data-theme='light'] .window-accent::after {
+  background: color-mix(in oklab, var(--secondary) 48%, transparent);
 }
 
 @media (max-width: 620px) {
