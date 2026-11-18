@@ -406,17 +406,27 @@ ol {
 .card {
   position: relative;
   border-radius: var(--card-radius);
-  background-color: var(--surface-1);
-  border: 1.5px solid var(--card-edge);
+  background-color: color-mix(in oklab, var(--surface-1) 76%, transparent);
+  border: 1.5px solid transparent;
   box-shadow: var(--card-shadow);
+  backdrop-filter: blur(16px) saturate(1.2);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
   padding: var(--card-pad);
+}
+
+/* on the light theme a little more body keeps the panel readable */
+[data-theme='light'] .card,
+[data-theme='light'] .material {
+  background-color: color-mix(in oklab, var(--surface-1) 88%, transparent);
 }
 
 /* flat material: one tonal fill, one hairline outline, no bevel */
 .material {
-  background-color: var(--surface-1);
-  border: 1.5px solid var(--card-edge);
+  background-color: color-mix(in oklab, var(--surface-1) 76%, transparent);
+  border: 1.5px solid transparent;
   box-shadow: var(--card-shadow);
+  backdrop-filter: blur(16px) saturate(1.2);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
 }
 
 .card--flat {

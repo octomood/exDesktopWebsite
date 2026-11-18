@@ -1,5 +1,6 @@
 import { Icon } from './Icon';
 import { Reveal } from './Reveal';
+import { Tilt } from './Tilt';
 import { useI18n } from '../i18n';
 
 export function Links() {
@@ -18,7 +19,8 @@ export function Links() {
 
         <ul className="links-grid">
           {t.links.items.map((item, index) => (
-            <Reveal as="li" key={item.title} delay={index * 55} variant="soft">
+            <Reveal as="li" key={item.title} delay={index * 55} variant="soft" className="link-cell">
+              <Tilt className="card-tilt">
               <a className="link-card material" href={item.href} target="_blank" rel="noreferrer">
                 <span className="link-card__top">
                   <span className="link-card__icon">
@@ -32,6 +34,7 @@ export function Links() {
                 <span className="link-card__handle mono">{item.handle}</span>
                 <span className="link-card__text">{item.text}</span>
               </a>
+              </Tilt>
             </Reveal>
           ))}
         </ul>

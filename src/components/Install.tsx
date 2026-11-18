@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Icon } from './Icon';
 import { Reveal } from './Reveal';
+import { Tilt } from './Tilt';
 import { useI18n } from '../i18n';
 import { assetUrl, installCommand, release } from '../data/release';
 import { copyText } from '../lib/clipboard';
@@ -90,7 +91,9 @@ export function Install() {
           </div>
         </Reveal>
 
-        <Reveal variant="window" className="install-card material">
+        <Reveal variant="window" className="install-cell">
+          <Tilt className="install-tilt">
+          <div className="install-card material">
           <div className="install-card__main">
             <div className="install-card__head">
               <span className="install-card__icon">
@@ -168,6 +171,8 @@ export function Install() {
               <Icon name="arrowUpRight" size={15} />
             </a>
           </aside>
+          </div>
+          </Tilt>
         </Reveal>
       </div>
     </section>

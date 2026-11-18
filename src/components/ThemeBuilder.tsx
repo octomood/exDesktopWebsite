@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { CSSProperties } from 'react';
 import { Icon } from './Icon';
+import { Tilt } from './Tilt';
 import { useI18n } from '../i18n';
 
 type MockTheme = 'light' | 'dark';
@@ -29,6 +30,7 @@ export function ThemeBuilder() {
   } as CSSProperties;
 
   return (
+    <Tilt className="builder-tilt">
     <div className="builder card" id="customise">
       <div className="builder__copy">
         <p className="eyebrow">{t.info.builder.eyebrow}</p>
@@ -154,5 +156,6 @@ export function ThemeBuilder() {
         </div>
       </div>
     </div>
+    </Tilt>
   );
 }
