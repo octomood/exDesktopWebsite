@@ -1,0 +1,40 @@
+{
+  "cli_version": "0.13.4",
+  "checkpoint_id": "01M7R322MP1HSNQ7YVQEM8QJ8A",
+  "session_id": "ses_e0fd24115ffdtftmo1WEM61lRP",
+  "strategy": "manual-commit",
+  "created_at": "2026-11-18T19:45:09.219619387Z",
+  "branch": "main",
+  "checkpoints_count": 1,
+  "save_step_count": 1,
+  "files_touched": [
+    ".github/workflows/pages.yml",
+    "public/.nojekyll",
+    "vite.config.ts"
+  ],
+  "agent": "OpenCode",
+  "model": "",
+  "turn_id": "f2d5d8f92638",
+  "compact_transcript_start": 0,
+  "session_token_usage": {
+    "input_tokens": 33372,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 377472,
+    "output_tokens": 10007,
+    "api_call_count": 21
+  },
+  "redaction": {
+    "replacements": 0,
+    "layers": {
+      "betterleaks": 0,
+      "connection_string": 0,
+      "credential_key": 0,
+      "credential_value": 0,
+      "credentialed_uri": 0,
+      "entropy": 0,
+      "key_context": 0,
+      "provider_token": 0,
+      "shell_stdin": 0
+    }
+  }
+}
