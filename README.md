@@ -64,6 +64,10 @@ src/
 - Netlify — `public/_redirects`
 - Vercel — `vercel.json`
 - nginx — `try_files $uri $uri/ /index.html;`
+- GitHub Pages — `.github/workflows/pages.yml`: собирает сайт с `BASE_PATH=/<repo>/`,
+  копирует `index.html` в `404.html` для глубоких ссылок и публикует `dist` на каждый пуш в `main`.
+  Превью: https://octomood.github.io/exDesktopWebsite/ (у глубоких ссылок Pages отдаёт статус 404,
+  но страница рендерится — для превью это не важно).
 
 ## Конкурс и Entire
 
