@@ -16,7 +16,7 @@ export function Preview() {
     tabRefs.current[next]?.focus();
   };
 
-  const onKeyDown = (event: React.KeyboardEvent, index: number) => {
+  const onKeyDown = (event: KeyboardEvent, index: number) => {
     switch (event.key) {
       case 'ArrowDown':
       case 'ArrowRight':

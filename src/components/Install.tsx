@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { Icon } from './Icon';
 import { useI18n } from '../i18n';
 import { assetUrl, installCommand, release } from '../data/release';
+import { copyText } from '../lib/clipboard';
 import type { OsKey } from '../i18n/types';
 
 function detectOs(): OsKey {
@@ -30,12 +31,7 @@ export function Install() {
   }, [copied]);
 
   const copy = async () => {
-    try {
-      await navigator.clipboard.writeText(installCommand);
-      setCopied(true);
-    } catch {
-      setCopied(false);
-    }
+    setCopied(await copyText(installCommand));
   };
 
   const detail = useMemo(() => {
