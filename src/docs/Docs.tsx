@@ -47,12 +47,8 @@ export function Docs() {
   }, [slug]);
 
   useEffect(() => {
-    if (!article) return;
-    const timer = window.setTimeout(() => {
-      document.title = `${article.title} — exDesktop`;
-    }, 0);
-    return () => window.clearTimeout(timer);
-  }, [article]);
+    document.title = article ? `${article.title} — exDesktop` : t.docs.notFoundTitle;
+  }, [article, t]);
 
   useEffect(() => {
     if (menuOpen && !isDesktop) document.body.dataset.locked = 'true';

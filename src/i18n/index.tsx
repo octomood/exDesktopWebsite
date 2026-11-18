@@ -35,7 +35,6 @@ export function I18nProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     document.documentElement.lang = t.htmlLang;
-    document.title = t.meta.title;
     const description = document.querySelector<HTMLMetaElement>('meta[name="description"]');
     if (description) description.content = t.meta.description;
     try {

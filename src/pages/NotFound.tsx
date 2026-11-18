@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
@@ -5,6 +6,10 @@ import { useI18n } from '../i18n';
 
 export function NotFound() {
   const { t } = useI18n();
+
+  useEffect(() => {
+    document.title = `${t.docs.notFoundTitle} — exDesktop`;
+  }, [t]);
 
   return (
     <>

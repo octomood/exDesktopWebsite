@@ -301,8 +301,8 @@
 
 .hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.04fr) minmax(0, 1fr);
-  gap: clamp(28px, 4vw, 60px);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.06fr);
+  gap: clamp(28px, 4vw, 56px);
   align-items: center;
   flex: 1;
 }
@@ -326,7 +326,7 @@
 
 .hero-title {
   margin-top: 14px;
-  font-size: clamp(1.85rem, 3.35vw, 3.15rem);
+  font-size: clamp(1.85rem, 3.4vw, 3.2rem);
   line-height: 1.02;
   letter-spacing: -0.042em;
 }
@@ -641,6 +641,10 @@
 .preview-tab.is-active {
   background: var(--primary-soft);
   color: var(--ink);
+}
+
+.preview-tab.is-active .preview-tab__index {
+  color: var(--ink-2);
 }
 
 .preview-tab__index {
