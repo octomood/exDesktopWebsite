@@ -34,9 +34,9 @@ export const ru: Dict = {
   },
   hero: {
     eyebrow: `Открытый клиент · ${release.tag}`,
-    titleA: 'Telegram Desktop',
-    titleB: 'по-своему',
-    lead: 'Пересобран теми, кто им пользуется: Material 3, настройки до последнего пикселя, плагины с проверкой и Premium без подписки. Ставится рядом с оригиналом — данные отдельные, аккаунт общий.',
+    titleA: 'exDesktop',
+    titleB: 'Telegram по-своему',
+    lead: 'Пересобран теми, кто им пользуется: Material 3, настройки до последнего пикселя, плагины с проверкой и Premium без подписки.',
     primary: 'Скачать exDesktop',
     secondary: 'Посмотреть документацию',
     facts: [

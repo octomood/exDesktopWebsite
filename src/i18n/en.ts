@@ -34,9 +34,9 @@ export const en: Dict = {
   },
   hero: {
     eyebrow: `Open client · ${release.tag}`,
-    titleA: 'Telegram Desktop',
-    titleB: 'on your terms',
-    lead: 'Rebuilt by people who actually use it: Material 3, settings down to the last pixel, checked plugins, and Premium without a subscription. It installs next to the original — separate data, one account.',
+    titleA: 'exDesktop',
+    titleB: 'Telegram, your way',
+    lead: 'Rebuilt by people who actually use it: Material 3, settings down to the last pixel, checked plugins, and Premium without a subscription.',
     primary: 'Download exDesktop',
     secondary: 'Read the documentation',
     facts: [

@@ -326,7 +326,7 @@
 
 .hero-title {
   margin-top: 14px;
-  font-size: clamp(1.85rem, 3.4vw, 3.2rem);
+  font-size: clamp(1.85rem, 3.2vw, 3.05rem);
   line-height: 1.02;
   letter-spacing: -0.042em;
 }
@@ -1402,7 +1402,7 @@
   min-width: 0;
   padding: clamp(20px, 2.8vw, 34px);
   background-color: var(--surface-2);
-  border-left: 1px solid var(--card-edge);
+  border-left: 1.5px solid var(--card-edge);
   display: flex;
   flex-direction: column;
 }
@@ -1811,7 +1811,7 @@
   }
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 1180px) {
   .hero-grid {
     grid-template-columns: minmax(0, 1fr);
     gap: 38px;

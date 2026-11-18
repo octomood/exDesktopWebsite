@@ -402,7 +402,7 @@ ol {
   position: relative;
   border-radius: var(--card-radius);
   background-color: var(--surface-1);
-  border: 1px solid var(--card-edge);
+  border: 1.5px solid var(--card-edge);
   box-shadow: var(--card-shadow);
   padding: var(--card-pad);
 }
@@ -410,7 +410,7 @@ ol {
 /* flat material: one tonal fill, one hairline outline, no bevel */
 .material {
   background-color: var(--surface-1);
-  border: 1px solid var(--card-edge);
+  border: 1.5px solid var(--card-edge);
   box-shadow: var(--card-shadow);
 }
 
