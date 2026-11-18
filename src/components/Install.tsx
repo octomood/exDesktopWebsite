@@ -108,6 +108,7 @@ export function Install() {
 
   return (
     <section className="section install" id="install">
+      <span className="section-no" aria-hidden="true">04</span>
       <div className="wrap">
         <Reveal className="section-head">
           <div>

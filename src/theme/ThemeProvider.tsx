@@ -79,21 +79,6 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     };
   }, []);
 
-  useEffect(() => {
-    let stored: string | null = null;
-    try {
-      stored = localStorage.getItem(STORAGE_KEY);
-    } catch {
-      stored = null;
-    }
-    if (stored === 'light' || stored === 'dark') return;
-
-    const query = window.matchMedia('(prefers-color-scheme: dark)');
-    const onChange = (event: MediaQueryListEvent) => setThemeState(event.matches ? 'dark' : 'light');
-    query.addEventListener('change', onChange);
-    return () => query.removeEventListener('change', onChange);
-  }, []);
-
   /* Swap the palette smoothly: a View Transition wipes the new theme in from the
      toggle button, older browsers get a plain colour cross-fade. */
   const commitTheme = useCallback((next: Theme, origin?: ThemeOrigin) => {
@@ -116,10 +101,19 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
     paintTransitionOrigin(origin);
 
-    const transition = startViewTransition.call(document, () => {
+    let transition: ViewTransition;
+    try {
+      transition = startViewTransition.call(document, () => {
+        applyTheme(next);
+        flushSync(() => setThemeState(next));
+      });
+    } catch {
+      /* view transitions can be rejected mid-navigation: switch without the wipe */
+      clearTransitionOrigin();
       applyTheme(next);
-      flushSync(() => setThemeState(next));
-    });
+      setThemeState(next);
+      return;
+    }
 
     runningTransition.current = transition;
     transition.finished.finally(() => {
@@ -128,6 +122,22 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       clearTransitionOrigin();
     });
   }, []);
+
+  /* follow the system palette until the visitor picks a theme themselves */
+  useEffect(() => {
+    let stored: string | null = null;
+    try {
+      stored = localStorage.getItem(STORAGE_KEY);
+    } catch {
+      stored = null;
+    }
+    if (stored === 'light' || stored === 'dark') return;
+
+    const query = window.matchMedia('(prefers-color-scheme: dark)');
+    const onChange = (event: MediaQueryListEvent) => commitTheme(event.matches ? 'dark' : 'light');
+    query.addEventListener('change', onChange);
+    return () => query.removeEventListener('change', onChange);
+  }, [commitTheme]);
 
   const setTheme = useCallback((next: Theme) => commitTheme(next), [commitTheme]);
   const toggle = useCallback(

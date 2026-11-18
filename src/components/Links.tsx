@@ -8,6 +8,7 @@ export function Links() {
 
   return (
     <section className="section links" id="links">
+      <span className="section-no" aria-hidden="true">06</span>
       <div className="wrap">
         <Reveal className="section-head">
           <div>

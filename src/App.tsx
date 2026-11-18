@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 import { ThemeProvider } from './theme/ThemeProvider';
 import { I18nProvider, useI18n } from './i18n';
 import { Backdrop } from './components/Backdrop';
+import { ClickRipple } from './components/ClickRipple';
 import { CursorDot } from './components/CursorDot';
 import { Home } from './pages/Home';
 import { Docs } from './docs/Docs';
@@ -43,6 +44,7 @@ function Shell() {
   return (
     <div className="app-shell">
       {isHome ? <Backdrop /> : null}
+      <ClickRipple />
       <CursorDot />
       <SkipLink />
       <Routes>
@@ -59,7 +61,7 @@ export default function App() {
   return (
     <ThemeProvider>
       <I18nProvider>
-        <BrowserRouter>
+        <BrowserRouter basename={import.meta.env.BASE_URL}>
           <ScrollManager />
           <Shell />
         </BrowserRouter>

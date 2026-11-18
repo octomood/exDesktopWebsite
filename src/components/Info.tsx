@@ -9,6 +9,7 @@ export function Info() {
 
   return (
     <section className="section info" id="features">
+      <span className="section-no" aria-hidden="true">03</span>
       <div className="wrap">
         <Reveal className="section-head">
           <div>

@@ -33,6 +33,27 @@ body[data-locked='true'] {
   overflow: hidden;
 }
 
+/* ---------- paper grain ---------- */
+
+/* a fixed, very quiet noise layer keeps the warm paper from reading as a flat gradient */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  pointer-events: none;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23g)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 180px 180px;
+  mix-blend-mode: multiply;
+}
+
+[data-theme='dark'] body::after {
+  opacity: 0.05;
+  mix-blend-mode: screen;
+}
+
 img,
 svg,
 video {
@@ -115,6 +136,36 @@ ol {
 
 .section + .section {
   border-top: 1px solid var(--line);
+}
+
+/* editorial section numbers live in the outer margin on wide screens */
+.section-no {
+  display: none;
+}
+
+@media (min-width: 1100px) {
+  .section-no {
+    display: block;
+    position: absolute;
+    top: clamp(64px, 8.5vw, 118px);
+    left: max(6px, calc((100vw - var(--wrap)) / 2 - 58px));
+    font-family: var(--font-mono);
+    font-size: clamp(1.9rem, 2.5vw, 3rem);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0.04em;
+    color: var(--primary);
+    opacity: 0.3;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    font-feature-settings: 'tnum' 1;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  [data-theme='dark'] .section-no {
+    opacity: 0.38;
+  }
 }
 
 .section-head {
@@ -250,11 +301,35 @@ ol {
   white-space: nowrap;
   isolation: isolate;
   transition:
-    transform var(--dur-1) var(--ease-out),
+    transform var(--dur-2) var(--ease-spring),
+    translate 0.45s var(--ease-out),
     background-color var(--dur-2) var(--ease-out),
     color var(--dur-2) var(--ease-out),
     border-radius var(--dur-3) var(--ease-spring),
     box-shadow var(--dur-2) var(--ease-out);
+}
+
+/* controls grow a little and bob under the pointer */
+@media (hover: hover) {
+  .btn:hover {
+    transform: scale(1.045);
+    animation: control-float 3.2s var(--ease-in-out) 0.12s infinite;
+  }
+
+  .icon-btn:hover {
+    transform: scale(1.1);
+    animation: control-float 2.8s var(--ease-in-out) 0.12s infinite;
+  }
+}
+
+@keyframes control-float {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -3px;
+  }
 }
 
 .btn::after {
@@ -279,6 +354,7 @@ ol {
 .btn:active {
   transform: scale(0.975);
   border-radius: var(--r-md);
+  animation-play-state: paused;
 }
 
 .btn svg {
@@ -338,7 +414,8 @@ ol {
   transition:
     background-color var(--dur-2) var(--ease-out),
     color var(--dur-2) var(--ease-out),
-    transform var(--dur-1) var(--ease-out);
+    transform var(--dur-2) var(--ease-spring),
+    translate 0.45s var(--ease-out);
 }
 
 .icon-btn:hover {
@@ -348,6 +425,7 @@ ol {
 
 .icon-btn:active {
   transform: scale(0.92);
+  animation-play-state: paused;
 }
 
 /* ---------- chips ---------- */
@@ -416,11 +494,14 @@ ol {
 
 /* flat material: one tonal fill, one hairline outline, no bevel */
 .material {
-  background-color: var(--glass-fill);
+  /*
+   * Opaque on purpose: every material card lives inside a tilting Tilt frame,
+   * and a translucent/backdrop-filtered layer shimmers at its rounded edges
+   * while the card is transformed.
+   */
+  background-color: color-mix(in oklab, var(--surface-1) 62%, var(--bg));
   border: 1.5px solid transparent;
   box-shadow: var(--card-shadow);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
 }
 
 .card--flat {
@@ -513,6 +594,78 @@ ol {
   }
 }
 
+/* ---------- click ripple ---------- */
+
+.click-ripple {
+  position: fixed;
+  z-index: 96;
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  border-radius: 50%;
+  background: color-mix(in oklab, var(--primary) 42%, transparent);
+  pointer-events: none;
+  opacity: 0;
+  animation: click-ripple 620ms var(--ease-out) forwards;
+  will-change: transform, opacity;
+}
+
+@keyframes click-ripple {
+  0% {
+    opacity: 0.55;
+    transform: scale(0.35);
+  }
+  60% {
+    opacity: 0.26;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(6.5);
+  }
+}
+
+@media (pointer: coarse) {
+  .click-ripple {
+    display: none;
+  }
+}
+
+/* ---------- theme switch ---------- */
+
+/* the new palette spreads from the toggle button */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 2;
+  clip-path: circle(0% at var(--theme-x, 100%) var(--theme-y, 0%));
+  animation: theme-reveal 560ms var(--ease-out) both;
+}
+
+@keyframes theme-reveal {
+  to {
+    clip-path: circle(var(--theme-r, 150vmax) at var(--theme-x, 100%) var(--theme-y, 0%));
+  }
+}
+
+/* fallback without View Transitions: ease every surface to the new palette */
+html.theme-switching *,
+html.theme-switching *::before,
+html.theme-switching *::after {
+  transition-property:
+    background-color, border-color, color, fill, stroke, box-shadow, outline-color, text-decoration-color !important;
+  transition-duration: 400ms !important;
+  transition-timing-function: var(--ease-out) !important;
+  transition-delay: 0s !important;
+}
+
 /* ---------- scrollbar ---------- */
 
 @supports (scrollbar-width: thin) {
@@ -550,5 +703,11 @@ ol {
   .reveal {
     opacity: 1;
     transform: none;
+  }
+
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
   }
 }

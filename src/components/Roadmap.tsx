@@ -7,6 +7,7 @@ export function Roadmap() {
 
   return (
     <section className="section roadmap" id="roadmap">
+      <span className="section-no" aria-hidden="true">05</span>
       <div className="wrap">
         <Reveal className="section-head">
           <div>

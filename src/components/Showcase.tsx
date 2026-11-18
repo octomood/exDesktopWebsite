@@ -4,12 +4,14 @@ import { Reveal } from './Reveal';
 import { Tilt } from './Tilt';
 import { useI18n } from '../i18n';
 import { release } from '../data/release';
+import { asset } from '../lib/asset';
 
 export function Showcase() {
   const { t } = useI18n();
 
   return (
     <section className="section showcase" id="showcase">
+      <span className="section-no" aria-hidden="true">02</span>
       <div className="wrap showcase__grid">
         <Reveal className="showcase__copy">
           <p className="eyebrow">{t.showcase.eyebrow}</p>
@@ -48,7 +50,7 @@ export function Showcase() {
               </div>
               <div className="preview-frame__screen">
                 <img
-                  src="/shots/settings.webp"
+                  src={asset('shots/settings.webp')}
                   alt={t.showcase.alt}
                   width={1600}
                   height={1000}

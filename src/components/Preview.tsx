@@ -5,6 +5,7 @@ import { Reveal } from './Reveal';
 import { Tilt } from './Tilt';
 import { useI18n } from '../i18n';
 import { release } from '../data/release';
+import { asset } from '../lib/asset';
 
 export function Preview() {
   const { t } = useI18n();
@@ -45,6 +46,7 @@ export function Preview() {
 
   return (
     <section className="section preview" id="preview">
+      <span className="section-no" aria-hidden="true">01</span>
       <div className="wrap">
         <Reveal className="section-head">
           <div>
@@ -73,7 +75,7 @@ export function Preview() {
                 {tabs.map((tab, index) => (
                   <img
                     key={tab.id}
-                    src={tab.image}
+                    src={asset(tab.image)}
                     alt={tab.alt}
                     width={1600}
                     height={1000}

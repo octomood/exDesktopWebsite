@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { Icon } from './Icon';
 import { useI18n } from '../i18n';
 import { release } from '../data/release';
+import { asset } from '../lib/asset';
 
 export function Footer() {
   const { t } = useI18n();
@@ -12,7 +13,7 @@ export function Footer() {
         <div className="footer-top">
           <div className="footer-brand">
             <Link to="/" className="brand brand--footer" aria-label="exDesktop">
-              <img src="/logo.png" alt="" width={38} height={38} className="brand__mark" />
+              <img src={asset('logo.png')} alt="" width={38} height={38} className="brand__mark" />
               <span className="brand__word">exDesktop</span>
             </Link>
             <p className="footer-tagline">{t.footer.tagline}</p>

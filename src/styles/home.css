@@ -118,9 +118,11 @@
   transform-origin: center;
 }
 
-.tilt.is-tilting .tilt__inner {
-  transform: scale(1.04);
-}
+/*
+ * No fractional hover scale here: it forces the browser to resample the
+ * anti-aliased rounded corners of every window while the card tilts, which
+ * reads as broken/stepped edges. The tilt and the cursor sheen stay.
+ */
 
 .tilt::after {
   content: '';
@@ -492,14 +494,49 @@
 }
 
 .hero-title {
+  --mx: 0;
+  --my: 0;
   margin-top: 14px;
   font-size: clamp(1.72rem, 3.2vw, 3.05rem);
   line-height: 1.02;
   letter-spacing: -0.042em;
 }
 
-.hero-title > span {
+/* two lines drift on their own pace and lean towards the pointer */
+.hero-title__line {
+  --shift-x: 9px;
+  --shift-y: 6px;
+  --tilt: 0.7deg;
+  --float-dur: 6.8s;
+  --float-delay: -1.4s;
   display: block;
+  transform:
+    translate3d(calc(var(--mx) * var(--shift-x)), calc(var(--my) * var(--shift-y)), 0)
+    rotate(calc(var(--mx) * var(--tilt)));
+  transition: transform 0.55s var(--ease-out);
+  animation: hero-float var(--float-dur) var(--ease-in-out) var(--float-delay) infinite alternate;
+  will-change: transform;
+}
+
+.hero-title__line--accent {
+  --shift-x: 15px;
+  --shift-y: 9px;
+  --tilt: -1deg;
+  --float-dur: 8.2s;
+  --float-delay: -3.6s;
+}
+
+.hero-title__word {
+  display: block;
+}
+
+@keyframes hero-float {
+  from {
+    translate: -2px 2px;
+  }
+  to {
+    translate: 3px -5px;
+  }
 }
 
 .hero-title__accent {
@@ -1021,19 +1058,10 @@
   width: 100%;
 }
 
-.card-tilt.is-tilting .tilt__inner {
-  transform: scale(1.03);
-}
-
 .install-tilt {
   --tilt-r: var(--r-xl);
   display: flex;
   width: 100%;
-}
-
-.install-tilt.is-tilting .tilt__inner,
-.builder-tilt.is-tilting .tilt__inner {
-  transform: scale(1.018);
 }
 
 .builder-tilt {
@@ -1097,8 +1125,14 @@
   padding: clamp(22px, 3vw, 38px);
   border-radius: var(--r-2xl);
   overflow: hidden;
-  /* a slightly lighter warm panel, still flat */
-  background-color: var(--glass-fill-soft);
+  /*
+   * A slightly lighter warm panel, still flat. It is deliberately opaque:
+   * the fixed backdrop shapes behind the page must not show through the
+   * tilting card, otherwise they read as a second layer that stays still.
+   */
+  background-color: color-mix(in oklab, var(--surface-2) 92%, var(--bg));
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
 .builder__title {
@@ -1152,7 +1186,9 @@
   height: 22px;
   border-radius: 50%;
   background: var(--sw);
-  transition: transform var(--dur-2) var(--ease-spring);
+  transition:
+    transform var(--dur-2) var(--ease-spring),
+    background-color 0.45s var(--ease-out);
 }
 
 .swatch:hover {
@@ -1292,7 +1328,14 @@
   background: var(--m-bg);
   color: var(--m-ink);
   overflow: hidden;
-  box-shadow: var(--shadow-2);
+  /*
+   * The 1px ring in the window colour keeps the rounded edge solid while the
+   * card tilts on hover; otherwise the lighter card shows through the
+   * anti-aliased seam and the corner looks broken.
+   */
+  box-shadow:
+    0 0 0 1px var(--m-bg),
+    var(--shadow-2);
   font-size: 0.7rem;
   line-height: 1.35;
 }
@@ -1305,6 +1348,18 @@
   --m-ink: #171410;
   --m-ink-2: #7b7368;
   --m-line: rgb(23 20 16 / 0.08);
+}
+
+/* the demo window cross-fades its palette instead of snapping */
+.mock,
+.mock *,
+.mock *::before,
+.mock *::after {
+  transition:
+    background-color 0.45s var(--ease-out),
+    border-color 0.45s var(--ease-out),
+    color 0.45s var(--ease-out),
+    box-shadow 0.45s var(--ease-out);
 }
 
 .mock__rail {

@@ -4,6 +4,7 @@ import { Icon } from './Icon';
 import { useI18n } from '../i18n';
 import { useTheme } from '../theme/ThemeProvider';
 import { release } from '../data/release';
+import { asset } from '../lib/asset';
 
 const sectionLinks = [
   { id: 'features', key: 'features' },
@@ -39,7 +40,10 @@ function ThemeButton() {
     <button
       type="button"
       className="icon-btn theme-toggle"
-      onClick={toggle}
+      onClick={(event) => {
+        const rect = event.currentTarget.getBoundingClientRect();
+        toggle({ x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 });
+      }}
       aria-label={theme === 'dark' ? t.ui.toLight : t.ui.toDark}
       title={theme === 'dark' ? t.ui.toLight : t.ui.toDark}
     >
@@ -113,7 +117,7 @@ export function Header() {
       <header className={`site-header ${scrolled ? 'is-scrolled' : ''}`}>
         <div className="wrap header-inner">
           <Link to="/" className="brand" aria-label="exDesktop">
-            <img src="/logo.png" alt="" width={34} height={34} className="brand__mark" />
+            <img src={asset('logo.png')} alt="" width={34} height={34} className="brand__mark" />
             <span className="brand__word">exDesktop</span>
           </Link>
 

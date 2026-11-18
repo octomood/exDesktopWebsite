@@ -3,6 +3,7 @@ import type { CSSProperties } from 'react';
 import { Icon } from './Icon';
 import { Tilt } from './Tilt';
 import { useI18n } from '../i18n';
+import { asset } from '../lib/asset';
 
 type MockTheme = 'light' | 'dark';
 
@@ -85,7 +86,7 @@ export function ThemeBuilder() {
         <div className="mock" data-mock={mockTheme} style={style} aria-hidden="true">
           <div className="mock__rail">
             <span className="mock__avatar mock__avatar--brand">
-              <img src="/logo.png" alt="" width={30} height={30} />
+              <img src={asset('logo.png')} alt="" width={30} height={30} />
             </span>
             <span className="mock__rail-dot" />
             <span className="mock__rail-dot" />
@@ -101,7 +102,7 @@ export function ThemeBuilder() {
             </div>
             <div className="mock__chat is-active">
               <span className="mock__avatar mock__avatar--brand">
-                <img src="/logo.png" alt="" width={26} height={26} />
+                <img src={asset('logo.png')} alt="" width={26} height={26} />
               </span>
               <span className="mock__chat-body">
                 <b>{t.info.builder.chat.name}</b>
@@ -130,7 +131,7 @@ export function ThemeBuilder() {
           <div className="mock__main">
             <div className="mock__head">
               <span className="mock__avatar mock__avatar--brand">
-                <img src="/logo.png" alt="" width={24} height={24} />
+                <img src={asset('logo.png')} alt="" width={24} height={24} />
               </span>
               <span className="mock__head-body">
                 <b>{t.info.builder.chat.name}</b>
